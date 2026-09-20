@@ -1,1 +1,1293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0b0d12">
+<meta name="description" content="JEEZONE - JEE Main Previous Year Questions Practice">
+<title>JEEZONE - JEE Main PYQ</title>
 
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --bg: #080a0f;
+    --card: #11141b;
+    --card2: #171b24;
+    --border: #272d38;
+    --text: #f5f7fa;
+    --muted: #9299a6;
+    --blue: #3b82f6;
+    --blue2: #2563eb;
+    --green: #22c55e;
+    --red: #ef4444;
+    --yellow: #f59e0b;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 100vh;
+}
+
+button {
+    font-family: inherit;
+}
+
+.app {
+    max-width: 1000px;
+    margin: auto;
+    min-height: 100vh;
+}
+
+/* HEADER */
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(8,10,15,.94);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 15px 18px;
+}
+
+.header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: linear-gradient(135deg,#2563eb,#7c3aed);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 21px;
+    font-weight: 900;
+}
+
+.logo h1 {
+    font-size: 21px;
+    letter-spacing: .5px;
+}
+
+.logo p {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 2px;
+}
+
+.header-btn {
+    border: 1px solid var(--border);
+    background: var(--card2);
+    color: white;
+    padding: 9px 13px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+/* HOME */
+.home {
+    padding: 22px 16px 40px;
+}
+
+.hero {
+    background:
+        radial-gradient(circle at top right, rgba(59,130,246,.22), transparent 35%),
+        linear-gradient(145deg,#111827,#0d1118);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 28px 20px;
+    margin-bottom: 18px;
+}
+
+.hero h2 {
+    font-size: 30px;
+    margin-bottom: 8px;
+}
+
+.hero p {
+    color: var(--muted);
+    line-height: 1.6;
+}
+
+.badge {
+    display: inline-block;
+    background: rgba(59,130,246,.14);
+    color: #60a5fa;
+    border: 1px solid rgba(59,130,246,.3);
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    margin-bottom: 14px;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.stat {
+    background: rgba(255,255,255,.04);
+    border: 1px solid var(--border);
+    border-radius: 13px;
+    padding: 14px;
+    text-align: center;
+}
+
+.stat strong {
+    display: block;
+    font-size: 21px;
+}
+
+.stat span {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+/* SELECTORS */
+.section-title {
+    font-size: 17px;
+    margin: 23px 0 12px;
+}
+
+.subject-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 10px;
+}
+
+.subject {
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: white;
+    border-radius: 15px;
+    padding: 19px 10px;
+    cursor: pointer;
+    text-align: center;
+    transition: .2s;
+}
+
+.subject:hover,
+.subject.active {
+    border-color: var(--blue);
+    background: rgba(59,130,246,.12);
+}
+
+.subject .emoji {
+    font-size: 27px;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.year-grid {
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    gap: 8px;
+}
+
+.year {
+    background: var(--card);
+    color: white;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 5px;
+    cursor: pointer;
+}
+
+.year.active {
+    background: var(--blue2);
+    border-color: var(--blue);
+}
+
+.start-btn {
+    width: 100%;
+    border: 0;
+    background: linear-gradient(135deg,#2563eb,#4f46e5);
+    color: white;
+    padding: 16px;
+    border-radius: 13px;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+/* PRACTICE */
+.practice {
+    display: none;
+    padding-bottom: 40px;
+}
+
+.practice-top {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+}
+
+.top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.question-count {
+    font-size: 13px;
+    color: var(--muted);
+}
+
+.next-top {
+    background: var(--blue);
+    color: white;
+    border: 0;
+    padding: 9px 17px;
+    border-radius: 9px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.progress {
+    height: 4px;
+    background: #1d222c;
+    margin-top: 12px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background: var(--blue);
+    width: 0%;
+    transition: .3s;
+}
+
+.question-area {
+    padding: 20px 16px;
+}
+
+.meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-bottom: 15px;
+}
+
+.meta span {
+    background: #172033;
+    color: #8ab4ff;
+    border: 1px solid #263754;
+    border-radius: 6px;
+    padding: 5px 8px;
+    font-size: 11px;
+}
+
+.meta .marks {
+    color: #4ade80;
+}
+
+.question {
+    font-size: 19px;
+    line-height: 1.65;
+    margin-bottom: 22px;
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+}
+
+.option {
+    width: 100%;
+    background: var(--card);
+    color: white;
+    border: 1px solid var(--border);
+    border-radius: 13px;
+    padding: 16px;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.option:hover {
+    border-color: #4b5563;
+}
+
+.option-letter {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #1d222c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+.option.correct {
+    background: rgba(34,197,94,.14);
+    border: 1px solid var(--green);
+}
+
+.option.correct .option-letter {
+    background: var(--green);
+    color: #06100a;
+}
+
+.option.wrong {
+    background: rgba(239,68,68,.13);
+    border: 1px solid var(--red);
+}
+
+.option.wrong .option-letter {
+    background: var(--red);
+    color: white;
+}
+
+.result-box {
+    display: none;
+    margin-top: 18px;
+    padding: 16px;
+    border-radius: 13px;
+    border: 1px solid var(--border);
+}
+
+.result-box.correct-result {
+    display: block;
+    background: rgba(34,197,94,.08);
+    border-color: rgba(34,197,94,.4);
+}
+
+.result-box.wrong-result {
+    display: block;
+    background: rgba(239,68,68,.08);
+    border-color: rgba(239,68,68,.4);
+}
+
+.result-title {
+    font-weight: bold;
+    margin-bottom: 7px;
+}
+
+.correct-result .result-title {
+    color: #4ade80;
+}
+
+.wrong-result .result-title {
+    color: #f87171;
+}
+
+.answer {
+    margin-bottom: 10px;
+}
+
+.explanation {
+    color: #c4c9d2;
+    line-height: 1.65;
+    font-size: 14px;
+}
+
+.explanation-title {
+    color: white;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.bottom-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.action-btn {
+    flex: 1;
+    border: 1px solid var(--border);
+    background: var(--card2);
+    color: white;
+    padding: 14px;
+    border-radius: 11px;
+    cursor: pointer;
+}
+
+.action-btn.primary {
+    background: var(--blue);
+    border-color: var(--blue);
+}
+
+/* SCORE */
+.score-screen {
+    display: none;
+    padding: 25px 16px;
+}
+
+.score-card {
+    text-align: center;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 30px 20px;
+}
+
+.score-circle {
+    width: 125px;
+    height: 125px;
+    margin: 15px auto 20px;
+    border-radius: 50%;
+    border: 8px solid var(--blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.score-circle strong {
+    font-size: 31px;
+}
+
+.score-circle span {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.score-details {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 8px;
+    margin-top: 20px;
+}
+
+.score-item {
+    background: var(--card2);
+    border-radius: 10px;
+    padding: 12px 5px;
+}
+
+.score-item strong {
+    display: block;
+}
+
+.score-item span {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+/* FOOTER */
+.footer {
+    text-align: center;
+    padding: 25px;
+    color: #697180;
+    font-size: 11px;
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+    .hero h2 {
+        font-size: 25px;
+    }
+
+    .question {
+        font-size: 17px;
+    }
+
+    .year-grid {
+        grid-template-columns: repeat(5,1fr);
+    }
+
+    .subject-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stats {
+        grid-template-columns: repeat(3,1fr);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<header class="header">
+    <div class="header-row">
+        <div class="logo">
+            <div class="logo-icon">J</div>
+            <div>
+                <h1>JEEZONE</h1>
+                <p>JEE Main PYQ Practice</p>
+            </div>
+        </div>
+
+        <button class="header-btn" onclick="goHome()">⌂ Home</button>
+    </div>
+</header>
+
+<!-- HOME -->
+<main id="home" class="home">
+
+    <section class="hero">
+        <span class="badge">JEE MAIN • PYQ PRACTICE</span>
+
+        <h2>Practice. Learn. Improve. 🚀</h2>
+
+        <p>
+            Practice JEE Main Previous Year Questions with
+            instant answers, explanations and score tracking.
+        </p>
+
+        <div class="stats">
+            <div class="stat">
+                <strong>10</strong>
+                <span>Years</span>
+            </div>
+
+            <div class="stat">
+                <strong>3</strong>
+                <span>Subjects</span>
+            </div>
+
+            <div class="stat">
+                <strong>+4</strong>
+                <span>Correct</span>
+            </div>
+        </div>
+    </section>
+
+    <h3 class="section-title">Choose Subject</h3>
+
+    <div class="subject-grid">
+
+        <button class="subject active" onclick="selectSubject('Physics',this)">
+            <span class="emoji">⚛️</span>
+            Physics
+        </button>
+
+        <button class="subject" onclick="selectSubject('Chemistry',this)">
+            <span class="emoji">🧪</span>
+            Chemistry
+        </button>
+
+        <button class="subject" onclick="selectSubject('Mathematics',this)">
+            <span class="emoji">📐</span>
+            Mathematics
+        </button>
+
+    </div>
+
+    <h3 class="section-title">Choose Year</h3>
+
+    <div class="year-grid">
+
+        <button class="year" onclick="selectYear(2026,this)">2026</button>
+        <button class="year active" onclick="selectYear(2025,this)">2025</button>
+        <button class="year" onclick="selectYear(2024,this)">2024</button>
+        <button class="year" onclick="selectYear(2023,this)">2023</button>
+        <button class="year" onclick="selectYear(2022,this)">2022</button>
+        <button class="year" onclick="selectYear(2021,this)">2021</button>
+        <button class="year" onclick="selectYear(2020,this)">2020</button>
+        <button class="year" onclick="selectYear(2019,this)">2019</button>
+        <button class="year" onclick="selectYear(2018,this)">2018</button>
+        <button class="year" onclick="selectYear(2017,this)">2017</button>
+
+    </div>
+
+    <button class="start-btn" onclick="startPractice()">
+        Start PYQ Practice →
+    </button>
+
+    <div class="footer">
+        © 2026 JEEZONE • JEE Main PYQ Practice
+    </div>
+
+</main>
+
+
+<!-- PRACTICE -->
+<section id="practice" class="practice">
+
+    <div class="practice-top">
+
+        <div class="top-row">
+
+            <div>
+                <div id="practiceSubject" class="question-count">
+                    Physics
+                </div>
+
+                <div id="questionCount" class="question-count">
+                    Question 1
+                </div>
+            </div>
+
+            <button class="next-top" onclick="nextQuestion()">
+                Next →
+            </button>
+
+        </div>
+
+        <div class="progress">
+            <div id="progressBar" class="progress-bar"></div>
+        </div>
+
+    </div>
+
+
+    <div class="question-area">
+
+        <div class="meta">
+
+            <span id="yearTag">JEE Main 2025</span>
+
+            <span id="shiftTag">
+                Online Shift
+            </span>
+
+            <span>MCQ • Single Correct</span>
+
+            <span class="marks">+4</span>
+
+            <span>-1</span>
+
+        </div>
+
+
+        <div id="question" class="question"></div>
+
+        <div id="options" class="options"></div>
+
+        <div id="resultBox" class="result-box">
+
+            <div id="resultTitle" class="result-title"></div>
+
+            <div id="answer" class="answer"></div>
+
+            <div class="explanation-title">
+                EXPLANATION
+            </div>
+
+            <div id="explanation" class="explanation"></div>
+
+        </div>
+
+
+        <div class="bottom-actions">
+
+            <button class="action-btn" onclick="goHome()">
+                ← Home
+            </button>
+
+            <button class="action-btn primary" onclick="nextQuestion()">
+                Next Question →
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SCORE -->
+<section id="scoreScreen" class="score-screen">
+
+    <div class="score-card">
+
+        <h2>Practice Complete 🎉</h2>
+
+        <div class="score-circle">
+
+            <strong id="finalScore">0</strong>
+
+            <span>Score</span>
+
+        </div>
+
+        <p id="scoreMessage">
+            Keep practicing!
+        </p>
+
+
+        <div class="score-details">
+
+            <div class="score-item">
+                <strong id="correctCount">0</strong>
+                <span>Correct</span>
+            </div>
+
+            <div class="score-item">
+                <strong id="wrongCount">0</strong>
+                <span>Wrong</span>
+            </div>
+
+            <div class="score-item">
+                <strong id="attemptCount">0</strong>
+                <span>Attempted</span>
+            </div>
+
+        </div>
+
+
+        <button class="start-btn" onclick="restartPractice()">
+            Practice Again
+        </button>
+
+        <button class="action-btn" style="width:100%;margin-top:10px"
+                onclick="goHome()">
+            Back to Home
+        </button>
+
+    </div>
+
+</section>
+
+</div>
+
+
+<script>
+
+/*
+====================================================
+JEEZONE QUESTION DATABASE
+====================================================
+
+Later we can add all verified PYQs here.
+
+Format:
+
+{
+ year: 2025,
+ subject: "Physics",
+ shift: "8 April Evening",
+ question: "...",
+ options: ["A","B","C","D"],
+ answer: 1,
+ explanation: "..."
+}
+
+answer:
+0 = A
+1 = B
+2 = C
+3 = D
+*/
+
+const questions = [
+
+{
+    year: 2025,
+    subject: "Physics",
+    shift: "Demo Shift",
+    question:
+    "A body moves with a constant speed of 20 m/s for 5 seconds. What distance does it cover?",
+
+    options: [
+        "25 m",
+        "50 m",
+        "100 m",
+        "200 m"
+    ],
+
+    answer: 2,
+
+    explanation:
+    "Distance = Speed × Time. Therefore, distance = 20 × 5 = 100 m."
+},
+
+{
+    year: 2025,
+    subject: "Physics",
+    shift: "Demo Shift",
+    question:
+    "The SI unit of force is:",
+
+    options: [
+        "Joule",
+        "Newton",
+        "Watt",
+        "Pascal"
+    ],
+
+    answer: 1,
+
+    explanation:
+    "Force is measured in Newton (N). From F = ma, the SI unit is kg m/s², which is called Newton."
+},
+
+{
+    year: 2025,
+    subject: "Chemistry",
+    shift: "Demo Shift",
+    question:
+    "The atomic number of carbon is:",
+
+    options: [
+        "4",
+        "6",
+        "8",
+        "12"
+    ],
+
+    answer: 1,
+
+    explanation:
+    "Carbon has 6 protons in its nucleus. Therefore its atomic number is 6."
+},
+
+{
+    year: 2025,
+    subject: "Mathematics",
+    shift: "Demo Shift",
+    question:
+    "If x + 5 = 12, then the value of x is:",
+
+    options: [
+        "5",
+        "6",
+        "7",
+        "8"
+    ],
+
+    answer: 2,
+
+    explanation:
+    "Subtract 5 from both sides: x = 12 − 5 = 7."
+},
+
+{
+    year: 2024,
+    subject: "Physics",
+    shift: "Demo Shift",
+    question:
+    "Which physical quantity has the SI unit metre per second?",
+
+    options: [
+        "Acceleration",
+        "Velocity",
+        "Force",
+        "Energy"
+    ],
+
+    answer: 1,
+
+    explanation:
+    "Velocity is displacement per unit time, so its SI unit is m/s."
+},
+
+{
+    year: 2024,
+    subject: "Chemistry",
+    shift: "Demo Shift",
+    question:
+    "The pH of a neutral aqueous solution at 25°C is approximately:",
+
+    options: [
+        "0",
+        "5",
+        "7",
+        "14"
+    ],
+
+    answer: 2,
+
+    explanation:
+    "At 25°C, a neutral aqueous solution has pH = 7."
+},
+
+{
+    year: 2024,
+    subject: "Mathematics",
+    shift: "Demo Shift",
+    question:
+    "What is the derivative of x² with respect to x?",
+
+    options: [
+        "x",
+        "2x",
+        "x²",
+        "2"
+    ],
+
+    answer: 1,
+
+    explanation:
+    "Using the power rule d(xⁿ)/dx = n xⁿ⁻¹, d(x²)/dx = 2x."
+}
+
+];
+
+
+/* STATE */
+
+let selectedSubject = "Physics";
+let selectedYear = 2025;
+
+let currentQuestions = [];
+let currentIndex = 0;
+
+let score = 0;
+let correct = 0;
+let wrong = 0;
+let attempted = 0;
+
+
+/* SUBJECT */
+
+function selectSubject(subject, element) {
+
+    selectedSubject = subject;
+
+    document.querySelectorAll(".subject")
+        .forEach(btn => btn.classList.remove("active"));
+
+    element.classList.add("active");
+}
+
+
+/* YEAR */
+
+function selectYear(year, element) {
+
+    selectedYear = year;
+
+    document.querySelectorAll(".year")
+        .forEach(btn => btn.classList.remove("active"));
+
+    element.classList.add("active");
+}
+
+
+/* START */
+
+function startPractice() {
+
+    currentQuestions = questions.filter(q =>
+        q.subject === selectedSubject &&
+        q.year === selectedYear
+    );
+
+    /*
+    If that exact year/subject doesn't have data yet,
+    show available demo questions instead.
+    */
+
+    if (currentQuestions.length === 0) {
+
+        currentQuestions = questions.filter(q =>
+            q.subject === selectedSubject
+        );
+
+    }
+
+    if (currentQuestions.length === 0) {
+
+        alert(
+            "Questions for this subject are not added yet. We will add the verified PYQs next."
+        );
+
+        return;
+    }
+
+    currentIndex = 0;
+
+    score = 0;
+    correct = 0;
+    wrong = 0;
+    attempted = 0;
+
+    document.getElementById("home").style.display = "none";
+
+    document.getElementById("scoreScreen").style.display = "none";
+
+    document.getElementById("practice").style.display = "block";
+
+    loadQuestion();
+}
+
+
+/* LOAD QUESTION */
+
+function loadQuestion() {
+
+    const q = currentQuestions[currentIndex];
+
+    document.getElementById("practiceSubject").textContent =
+        q.subject;
+
+    document.getElementById("questionCount").textContent =
+        "Question " + (currentIndex + 1) +
+        " of " + currentQuestions.length;
+
+    document.getElementById("yearTag").textContent =
+        "JEE Main " + q.year;
+
+    document.getElementById("shiftTag").textContent =
+        q.shift;
+
+    document.getElementById("question").textContent =
+        q.question;
+
+
+    const optionsContainer =
+        document.getElementById("options");
+
+    optionsContainer.innerHTML = "";
+
+
+    q.options.forEach((option, index) => {
+
+        const button = document.createElement("button");
+
+        button.className = "option";
+
+        button.innerHTML = `
+            <span class="option-letter">
+                ${String.fromCharCode(65 + index)}
+            </span>
+
+            <span>${option}</span>
+        `;
+
+        button.onclick = () =>
+            selectAnswer(index);
+
+        optionsContainer.appendChild(button);
+
+    });
+
+
+    const resultBox =
+        document.getElementById("resultBox");
+
+    resultBox.className = "result-box";
+
+    document.getElementById("resultTitle").textContent = "";
+
+    document.getElementById("answer").textContent = "";
+
+    document.getElementById("explanation").textContent = "";
+
+
+    const progress =
+        ((currentIndex) / currentQuestions.length) * 100;
+
+    document.getElementById("progressBar").style.width =
+        progress + "%";
+
+}
+
+
+/* ANSWER */
+
+function selectAnswer(selectedIndex) {
+
+    const q = currentQuestions[currentIndex];
+
+    const optionButtons =
+        document.querySelectorAll(".option");
+
+    /*
+    Prevent answering twice.
+    */
+
+    optionButtons.forEach(btn => {
+        btn.disabled = true;
+        btn.style.cursor = "default";
+    });
+
+
+    const correctIndex = q.answer;
+
+
+    optionButtons[correctIndex]
+        .classList.add("correct");
+
+
+    if (selectedIndex === correctIndex) {
+
+        correct++;
+
+        score += 4;
+
+        attempted++;
+
+        const resultBox =
+            document.getElementById("resultBox");
+
+        resultBox.className =
+            "result-box correct-result";
+
+        document.getElementById("resultTitle").textContent =
+            "✓ Correct Answer";
+
+    }
+
+    else {
+
+        wrong++;
+
+        score -= 1;
+
+        attempted++;
+
+        optionButtons[selectedIndex]
+            .classList.add("wrong");
+
+
+        const resultBox =
+            document.getElementById("resultBox");
+
+        resultBox.className =
+            "result-box wrong-result";
+
+        document.getElementById("resultTitle").textContent =
+            "✕ Wrong Answer";
+
+    }
+
+
+    document.getElementById("answer").innerHTML =
+        "<strong>Correct Answer:</strong> " +
+        String.fromCharCode(65 + correctIndex) +
+        ") " +
+        q.options[correctIndex];
+
+
+    document.getElementById("explanation").textContent =
+        q.explanation;
+
+}
+
+
+/* NEXT */
+
+function nextQuestion() {
+
+    if (currentIndex < currentQuestions.length - 1) {
+
+        currentIndex++;
+
+        loadQuestion();
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    }
+
+    else {
+
+        showScore();
+
+    }
+
+}
+
+
+/* SCORE */
+
+function showScore() {
+
+    document.getElementById("practice").style.display =
+        "none";
+
+    document.getElementById("scoreScreen").style.display =
+        "block";
+
+
+    document.getElementById("finalScore").textContent =
+        score;
+
+    document.getElementById("correctCount").textContent =
+        correct;
+
+    document.getElementById("wrongCount").textContent =
+        wrong;
+
+    document.getElementById("attemptCount").textContent =
+        attempted;
+
+
+    let message = "Keep practicing! 💪";
+
+    if (correct === currentQuestions.length) {
+        message = "Perfect practice! 🔥";
+    }
+
+    else if (correct > wrong) {
+        message = "Great work! Keep improving. 🚀";
+    }
+
+    document.getElementById("scoreMessage").textContent =
+        message;
+
+}
+
+
+/* RESTART */
+
+function restartPractice() {
+
+    currentIndex = 0;
+
+    score = 0;
+    correct = 0;
+    wrong = 0;
+    attempted = 0;
+
+    document.getElementById("scoreScreen").style.display =
+        "none";
+
+    document.getElementById("practice").style.display =
+        "block";
+
+    loadQuestion();
+
+}
+
+
+/* HOME */
+
+function goHome() {
+
+    document.getElementById("practice").style.display =
+        "none";
+
+    document.getElementById("scoreScreen").style.display =
+        "none";
+
+    document.getElementById("home").style.display =
+        "block";
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+
+</script>
+
+</body>
+  </html>
